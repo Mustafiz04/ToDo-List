@@ -2,16 +2,18 @@ var express = require("express"),
     bodyparser = require("body-parser"),
     mongoose = require("mongoose"),
     methodOveride = require("method-override");
+    
 
     Todolist = require("./model/todo");
 
 
 app = express();
-mongoose.connect("mongodb://localhost/todo", { useNewUrlParser: true});
 app.use(bodyparser.urlencoded({extended:true}));
 app.set("view engine", "ejs");
 app.use(methodOveride("_method"));
 app.use(express.static(__dirname + "/public"));
+mongoose.connect("mongodb://localhost/todo", { useNewUrlParser: true});
+
 
 // index page
 app.get("/" , (req, res) => {
